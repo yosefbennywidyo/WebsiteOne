@@ -31,8 +31,8 @@
 //= require jvectormap
 //= require jvectormap/maps/world_mill_en
 //= require jstz.min
-//= require moment.min
-//= require moment-timezone-with-data-2010-2020
+//= require moment/min/moment.min
+//= require moment-tz/builds/moment-timezone-with-data-2010-2020.min.js
 
 // To deal with the headache of initializing JavaScripts with TurboLinks, I
 // wrote this custom module definer to handle initialization code
