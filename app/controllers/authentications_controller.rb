@@ -35,12 +35,7 @@ class AuthenticationsController < ApplicationController
         # Bryan: TESTED
         flash[:alert] = 'Failed to unlink GitHub. Please use another provider for login or reset password.'
       elsif @authentication.destroy
-	user = User.find(current_user.id)
-	if user.update_attributes(github_profile_url: nil)
-          flash[:notice] = 'Successfully removed profile.'
-	else
-          flash[:notice] = 'Github profile url could not be removed.'
-	end
+        unlink_github_profile
       else
         flash[:alert] = 'Authentication method could not be removed.'
       end
@@ -52,6 +47,15 @@ class AuthenticationsController < ApplicationController
 
 
   private
+
+  def unlink_github_profile
+    user = User.find(current_user.id)
+    if user.update_attributes(github_profile_url: nil)
+      flash[:notice] = 'Successfully removed profile.'
+    else
+      flash[:notice] = 'Github profile url could not be removed.'
+    end
+  end
 
   def link_github_profile
     omniauth = request.env['omniauth.auth']
