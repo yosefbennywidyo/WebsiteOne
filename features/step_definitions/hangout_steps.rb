@@ -7,6 +7,10 @@ Then(/^I jump to one minute before the end of the event at "([^"]*)"/) do |jump_
   Delorean.time_travel_to(Time.parse(jump_date))
 end
 
+Then(/^I jump to one minute before the end of the next event at "([^"]*)"/) do |jump_date|
+  Delorean.time_travel_to(Time.parse(jump_date))
+end
+
 
 Then /^I should (not )?see hangout button$/ do |absent|
   if absent
