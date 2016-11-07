@@ -15,7 +15,7 @@ class EventInstancesController < ApplicationController
       SlackService.post_yt_link(event_instance) if (slack_notify && event_instance.yt_video_id?) || yt_video_id_changed
 
       TwitterService.tweet_hangout_notification(event_instance) if event_instance.started? && hangout_url_changed
-      TwitterService.tweet_yt_link(event_instance) if yt_video_id_changed
+      #TwitterService.tweet_yt_link(event_instance) if yt_video_id_changed
 
       redirect_to(event_path params[:event_id]) && return if local_request? && params[:event_id].present?
       head :ok
@@ -70,8 +70,8 @@ class EventInstancesController < ApplicationController
         user_id: params[:host_id],
         hangout_participants_snapshots_attributes: [{participants: params[:participants]}],
         participants: merge_participants(event_instance.participants, params[:participants]),
-        hangout_url: params[:hangout_url],
-        yt_video_id: params[:yt_video_id],
+        hangout_url: params[:hangout_url] || event_instance.hangout_url,
+        yt_video_id: params[:yt_video_id] || params[:video_url].try(:split, "/").try(:last),
         hoa_status: params[:hoa_status],
         url_set_directly: params[:url_set_directly],
         updated_at: Time.now

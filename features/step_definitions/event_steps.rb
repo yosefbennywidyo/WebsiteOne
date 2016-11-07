@@ -255,7 +255,7 @@ Given(/^an event "([^"]*)"$/) do |event_name|
 end
 
 And(/^that the HangoutConnection has pinged to indicate the event start$/) do
-  participants = {"0"=>{"id"=>"hangout2750757B_ephemeral.id.google.com^a85dcb4670", "hasMicrophone"=>"true", "hasCamera"=>"true", "hasAppEnabled"=>"true", "isBroadcaster"=>"true", "isInBroadcast"=>"true", "displayIndex"=>"0", "person"=>{"id"=>"108533475599002820142", "displayName"=>"Alejandro Babio", "image"=>{"url"=>"https://lh4.googleusercontent.com/-p4ahDFi9my0/AAAAAAAAAAI/AAAAAAAAAAA/n-WK7pTcJa0/s96-c/photo.jpg"}, "na"=>"false"}, "locale"=>"en", "na"=>"false"}}
+  participants = {"0" => {"id" => "hangout2750757B_ephemeral.id.google.com^a85dcb4670", "hasMicrophone" => "true", "hasCamera" => "true", "hasAppEnabled" => "true", "isBroadcaster" => "true", "isInBroadcast" => "true", "displayIndex" => "0", "person" => {"id" => "108533475599002820142", "displayName" => "Alejandro Babio", "image" => {"url" => "https://lh4.googleusercontent.com/-p4ahDFi9my0/AAAAAAAAAAI/AAAAAAAAAAA/n-WK7pTcJa0/s96-c/photo.jpg"}, "na" => "false"}, "locale" => "en", "na" => "false"}}
   header 'ORIGIN', 'a-hangout-opensocial.googleusercontent.com'
   put "/hangouts/@google_id", {title: @event.name, host_id: '3', event_id: @event.id,
                                participants: participants, hangout_url: 'http://hangout.test',
@@ -312,4 +312,9 @@ end
 And(/^The box for "([\w]+)" should be checked$/) do |day|
   box = page.find("#event_repeats_weekly_each_days_of_the_week_#{day.downcase}")
   expect(box).to be_checked
+end
+
+
+And(/^I click the video link save button$/) do
+  page.find(:css, %q{input[id="video_link_save"]}).trigger('click')
 end

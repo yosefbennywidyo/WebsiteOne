@@ -83,6 +83,10 @@ When(/^I open the Edit URL controls/) do
   page.execute_script(  %q{$('li[role="edit_hoa_link"] > a').trigger('click')}  )
 end
 
+When(/^I open the Edit Youtube URL controls/) do
+  page.execute_script(  %q{$('li[role="edit_youtube_link"] > a').trigger('click')}  )
+end
+
 When(/^I click on the Save button/) do
   page.find(:css, %q{input[id="hoa_link_save"]}).trigger('click')
 end

@@ -48,6 +48,10 @@ class EventInstance < ActiveRecord::Base
     self.participants.each { |_, hash| break hash['person']['displayName'] if hash['isBroadcaster'] == 'true' }
   end
 
+  def watch_url
+    "http://youtu.be/#{yt_video_id}"
+  end
+
   private
 
   def manually_updated_event_not_finished?
