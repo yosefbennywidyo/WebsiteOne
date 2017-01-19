@@ -1,4 +1,4 @@
-@vcr
+@vcr @slow
 Feature: Show Pending Hookups
   In order to let other members know which hookups are available
   As a user

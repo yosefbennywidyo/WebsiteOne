@@ -1,4 +1,4 @@
-@vcr
+@vcr @slow
 Feature: List Repeating Events
   As a site user
   So I can find events relevant to me that are happening now
